@@ -2,7 +2,7 @@
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install helloworld.
+Use the package manager [npm](https://www.npmjs.com/) to install Eventso.
 
 Use node v20 use :
 ```bash
