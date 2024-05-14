@@ -1,5 +1,5 @@
 export default () => (`
-  <div class="card m-5" style="width: 20rem;">
+  <div class="card m-2" style="width: 20rem;">
     <img src="https://images.nightcafe.studio/jobs/naI3MDWkpm81FCknHmeL/naI3MDWkpm81FCknHmeL--1--z56mq.jpg?tr=w-1600,c-at_max" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Birthday</h5>
