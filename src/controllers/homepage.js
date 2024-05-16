@@ -14,10 +14,10 @@ const Home = class {
     return `
       <header class="container">
           ${viewNav()}
-      <header>
+      </header>
 
       <main>
-        <div class="d-flex flex-wrap justify-content-between mb-4 mt-3">
+        <div class="container d-flex flex-wrap justify-content-between mb-4 mt-3">
           <form class="d-flex w-50" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-primary" type="submit">Search</button>
