@@ -1,6 +1,6 @@
-import dashbtn from '../views/dashbtn';
+import dashbtn from '../views/dashboard/dashbtn';
 import viewNav from '../views/nav';
-import viewDashboard from '../views/userdash';
+import viewDashboard from '../views/dashboard/userdash';
 
 const SignIn = class {
   constructor(params) {
@@ -17,7 +17,7 @@ const SignIn = class {
           ${viewNav()}
         </div>
         ${dashbtn()}
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap justify-content-center">
           ${viewDashboard()}
           ${viewDashboard()}
           ${viewDashboard()}

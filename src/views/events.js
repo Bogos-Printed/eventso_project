@@ -4,7 +4,7 @@ export default () => (`
     <div class="card-body">
       <h5 class="card-title">Birthday</h5>
       <p class="card-text">Today we celebrate Bill's birthday and the ascension of his kin. There will be plenty of people and a time of prayer to our lord Gl'r'Usher</p>
-      <p>⏰14:00 📅29/07/24<p>
+      <p>14:00⏰ 29/07/2024📅<p>
       <div class="d-flex flex-wrap">
       <a href="#" class="btn btn-primary align-self-center">Participate</a>
       <p class="m-2 ps-4"> 150 places left</p></div>
