@@ -1,6 +1,3 @@
-import participantModal from './participant-modal';
-import editModal from './edit-modal';
-
 export default () => (`
   <div class="card m-3 p-3 shadow" style="max-width: 540px;">
     <div class="row g-0">
@@ -15,13 +12,9 @@ export default () => (`
         </div>
       </div>
       <div class="p-2 d-flex justify-content-between">
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-modal">Edit</a>
-        <a data-bs-toggle="modal" data-bs-target="#participant-modal" class="btn btn-warning">Participants</a>
-        <a href="#" class="btn btn-danger">Delete</a>
+        <a href="#" class="btn btn-danger">Resign</a>
       </div>
     </div>
   </div>
 
-  ${editModal()}
-  ${participantModal()}
 `);

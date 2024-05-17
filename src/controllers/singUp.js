@@ -1,7 +1,7 @@
 import viewNav from '../views/nav';
 import viewSU from '../views/signup';
 
-const SignIn = class {
+const SignUp = class {
   constructor(params) {
     this.el = document.querySelector('#root');
     this.params = params;
@@ -26,4 +26,4 @@ const SignIn = class {
   }
 };
 
-export default SignIn;
+export default SignUp;

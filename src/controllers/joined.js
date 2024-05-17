@@ -1,8 +1,8 @@
 import dashbtn from '../views/dashboard/dashbtn';
 import viewNav from '../views/nav';
-import viewDashboard from '../views/dashboard/userdash';
+import viewJoined from '../views/dashboard/event-joined';
 
-const Dashboard = class {
+const Joined = class {
   constructor(params) {
     this.el = document.querySelector('#root');
     this.params = params;
@@ -18,9 +18,9 @@ const Dashboard = class {
         </div>
         ${dashbtn()}
         <div class="d-flex flex-wrap justify-content-center">
-          ${viewDashboard()}
-          ${viewDashboard()}
-          ${viewDashboard()}
+          ${viewJoined()}
+          ${viewJoined()}
+          ${viewJoined()}
         </div>
     </div>
       
@@ -32,4 +32,4 @@ const Dashboard = class {
   }
 };
 
-export default Dashboard;
+export default Joined;

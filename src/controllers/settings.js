@@ -1,8 +1,7 @@
-import dashbtn from '../views/dashboard/dashbtn';
+import viewSettings from '../views/setting-user';
 import viewNav from '../views/nav';
-import viewDashboard from '../views/dashboard/userdash';
 
-const Dashboard = class {
+const Settings = class {
   constructor(params) {
     this.el = document.querySelector('#root');
     this.params = params;
@@ -16,11 +15,8 @@ const Dashboard = class {
         <div class="col-12">
           ${viewNav()}
         </div>
-        ${dashbtn()}
-        <div class="d-flex flex-wrap justify-content-center">
-          ${viewDashboard()}
-          ${viewDashboard()}
-          ${viewDashboard()}
+        <div>
+          ${viewSettings()}
         </div>
     </div>
       
@@ -32,4 +28,4 @@ const Dashboard = class {
   }
 };
 
-export default Dashboard;
+export default Settings;
