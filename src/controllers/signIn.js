@@ -1,5 +1,5 @@
 import viewNav from '../views/nav';
-import viewSI from '../views/signin';
+import viewSI from '../views/account/signin';
 
 const SignIn = class {
   constructor(params) {

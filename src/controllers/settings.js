@@ -1,4 +1,4 @@
-import viewSettings from '../views/setting-user';
+import viewSettings from '../views/account/setting-user';
 import viewNav from '../views/nav';
 
 const Settings = class {

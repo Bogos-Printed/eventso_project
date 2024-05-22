@@ -1,6 +1,7 @@
 import viewNav from '../views/nav';
 // import viewHome from '../views/home';
-import viewEvents from '../views/events';
+import viewEvents from '../views/events-map';
+import eventList from '../views/event-list';
 
 const Home = class {
   constructor(params) {
@@ -10,7 +11,17 @@ const Home = class {
     this.run();
   }
 
-  render() {
+  async dataFetch() {
+    try {
+      const events = await eventList();
+      return events;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async render() {
+    const events = await this.dataFetch();
     return `
       <header class="container">
           ${viewNav()}
@@ -38,19 +49,14 @@ const Home = class {
         </div>
 
         <div class="row d-flex justify-content-center">
-          ${viewEvents()}
-          ${viewEvents()}
-          ${viewEvents()}
-          ${viewEvents()}
-          ${viewEvents()}
-          ${viewEvents()}
+          ${viewEvents(events)}
         </div>
       </main>
     `;
   }
 
-  run() {
-    this.el.innerHTML = this.render();
+  async run() {
+    this.el.innerHTML = await this.render();
   }
 };
 

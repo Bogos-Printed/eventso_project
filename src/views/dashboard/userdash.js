@@ -1,17 +1,17 @@
 import participantModal from './participant-modal';
 import editModal from './edit-modal';
 
-export default () => (`
+export default (data) => (`
   <div class="card m-3 p-3 shadow" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="https://images.nightcafe.studio/jobs/nV7F2yKY02wbuQvbW7ch/nV7F2yKY02wbuQvbW7ch--2--etbl8.jpg?tr=w-1600,c-at_max" class="img-fluid rounded" alt="...">
+        <img src="${data.image}" class="img-fluid rounded" alt="image of event">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Painting the gods</h5>
-          <p class="card-text">Come join us on our activity of painting our gods. Prolong the respect of the old code and the worship of the mighty beyonder</p>
-          <p class="card-text"><small class="text-body-secondary">14:00⏰ 29/07/2024📅</small></p>
+          <h5 class="card-title">${data.title}</h5>
+          <p class="card-text">${data.description}</p>
+          <p class="card-text"><small class="text-body-secondary">${data.date}</small></p>
         </div>
       </div>
       <div class="p-2 d-flex justify-content-between">
