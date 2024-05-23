@@ -1,4 +1,4 @@
-import formModal from './form-modal';
+import formModal from './modal/form-modal';
 
 export default () => (`
   <button type="button" class="btn btn-success me-2"  data-bs-toggle="modal" data-bs-target="#form-modal">Create an event</button>

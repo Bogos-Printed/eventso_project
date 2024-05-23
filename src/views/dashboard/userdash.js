@@ -1,5 +1,5 @@
-import participantModal from './participant-modal';
-import editModal from './edit-modal';
+import participantModal from './modal/participant-modal';
+import editModal from './modal/edit-modal';
 
 export default (data) => (`
   <div class="card m-3 p-3 shadow" style="max-width: 540px;">

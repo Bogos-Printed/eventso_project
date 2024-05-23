@@ -1,7 +1,7 @@
 import dashbtn from '../views/dashboard/dashbtn';
 import viewNav from '../views/nav';
-import viewDashboard from '../views/userdash-map';
-import dashList from '../views/userdash-list';
+import viewDashboard from '../views/dashboard/userdash-map';
+import dashList from '../views/dashboard/userdash-list';
 
 const Dashboard = class {
   constructor(params) {

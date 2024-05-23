@@ -26,6 +26,17 @@ export default () => (`
             </div>
 
             <div class="mb-3">
+              <label class="form-label" for="inputGroupSelect01">Options</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">based</option>
+                <option value="2">on</option>
+                <option value="3">enum</option>
+                <option value="3">content</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
               <label for="inputLocation" class="form-label">Location</label>
               <input type="text" class="form-control" id="inputLocation">
             </div>
