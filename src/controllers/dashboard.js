@@ -1,7 +1,9 @@
-import dashbtn from '../views/dashboard/dashbtn';
+import dashbtn from '../views/dashboard/events/dashboard-button';
 import viewNav from '../views/nav';
-import viewDashboard from '../views/dashboard/userdash-map';
-import dashList from '../views/dashboard/userdash-list';
+import viewDashboard from '../views/dashboard/events/dashboard-map';
+import dashboardEvents from '../views/dashboard/events/dashboard-list';
+import createEvent from '../views/dashboard/create-event';
+import formModal from '../views/dashboard/modal/form-modal';
 
 const Dashboard = class {
   constructor(params) {
@@ -13,7 +15,7 @@ const Dashboard = class {
 
   async dataFetch() {
     try {
-      const events = await dashList();
+      const events = await dashboardEvents();
       return events;
     } catch (error) {
       throw new Error(error);
@@ -32,12 +34,31 @@ const Dashboard = class {
           ${viewDashboard(events)}
         </div>
     </div>
-      
+    ${formModal()}
+    
     `;
+  }
+
+  formGrab() {
+    const form = document.querySelector('#createEvent');
+    const bruh = ['image', 'title', 'description', 'category', 'location', 'date'];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const fields = {};
+
+      bruh.forEach((elem) => {
+        fields[elem] = formData.get(elem);
+      });
+
+      createEvent(fields);
+    });
   }
 
   async run() {
     this.el.innerHTML = await this.render();
+    this.formGrab();
   }
 };
 
