@@ -1,5 +1,3 @@
-import formModal from './modal/form-modal';
-
 export default () => (`
   <button type="button" class="btn btn-success me-2"  data-bs-toggle="modal" data-bs-target="#form-modal">Create an event</button>
   <div class="btn-group">
@@ -7,6 +5,4 @@ export default () => (`
     <a href="/joined" class="btn btn-primary">Joined</a>
     <a href="/settings" class="btn btn-primary">Settings</a>
   </div>
-      
-  ${formModal()}
 `);

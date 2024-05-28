@@ -1,17 +1,14 @@
-import participantModal from './modal/participant-modal';
-import editModal from './modal/edit-modal';
-
-export default (data) => (`
+export default (event) => (`
   <div class="card m-3 p-3 shadow" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="${data.image}" class="img-fluid rounded" alt="image of event">
+        <img src="${event.image}" class="img-fluid rounded" alt="image of event">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">${data.title}</h5>
-          <p class="card-text">${data.description}</p>
-          <p class="card-text"><small class="text-body-secondary">${data.date}</small></p>
+          <h5 class="card-title">${event.title}</h5>
+          <p class="card-text">${event.description}</p>
+          <p class="card-text"><small class="text-body-secondary">${event.date}</small></p>
         </div>
       </div>
       <div class="p-2 d-flex justify-content-between">
@@ -21,7 +18,4 @@ export default (data) => (`
       </div>
     </div>
   </div>
-
-  ${editModal()}
-  ${participantModal()}
 `);

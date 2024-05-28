@@ -11,5 +11,3 @@ export default (data) => (`
     </div>
   </div>
 `);
-
-// <p>14:00⏰ 29/07/2024📅<p></p>
