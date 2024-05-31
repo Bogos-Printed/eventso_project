@@ -1,4 +1,4 @@
-export default () => (`
+export default (allParticipants) => (`
   <div class="modal fade" id="participant-modal" tabindex="-1" aria-labelledby="participantModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -7,26 +7,14 @@ export default () => (`
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <table class="table table-hover">
+          <table class="table table-hover" id='participant-table'>
             <tr class="mb-3">
               <th class="ms-4" scope="col">name</th>
               <th class="ms-4" scope="col">firstname</th>
               <th class="ms-4" scope="col">email</th>
               <th> </th>
             </tr>
-
-            <tr>
-              <td>James</td>
-              <td>James</td>
-              <td>james@mail.com</td>
-              <td><button type="submit" class="btn btn-danger">Remove</button></td>
-            </tr>
-            <tr>
-              <td>Mages</td>
-              <td>Magic</td>
-              <td>mage@mail.com</td>
-              <td><button type="submit" class="btn btn-danger">Remove</button></td>
-            </tr>
+            ${allParticipants}
           </table>
         </div>
         <div class="modal-footer">

@@ -1,9 +1,18 @@
-import dashbtn from '../views/dashboard/events/dashboard-button';
 import viewNav from '../views/nav';
+import dashbtn from '../views/dashboard/dashboard-button';
+
 import viewDashboard from '../views/dashboard/events/dashboard-map';
 import dashboardEvents from '../views/dashboard/events/dashboard-list';
+
 import createEvent from '../views/dashboard/create-event';
 import formModal from '../views/dashboard/modal/form-modal';
+
+import dashboardParticipant from '../views/dashboard/participants/participant-list';
+import viewParticipant from '../views/dashboard/participants/participant-map';
+import participantModal from '../views/dashboard/modal/participant-modal';
+
+// import editInfos from '../views/dashboard/edit/edit-content';
+// import editModal from '../views/dashboard/modal/edit-modal';
 
 const Dashboard = class {
   constructor(params) {
@@ -13,9 +22,9 @@ const Dashboard = class {
     this.run();
   }
 
-  async dataFetch() {
+  async dataGet(data) {
     try {
-      const events = await dashboardEvents();
+      const events = await data;
       return events;
     } catch (error) {
       throw new Error(error);
@@ -23,7 +32,8 @@ const Dashboard = class {
   }
 
   async render() {
-    const events = await this.dataFetch();
+    const events = await this.dataGet(dashboardEvents());
+    const participants = await this.dataGet(dashboardParticipant(2));
     return `
     <div class="container">
         <div class="col-12">
@@ -35,7 +45,8 @@ const Dashboard = class {
         </div>
     </div>
     ${formModal()}
-    
+    ${viewParticipant(participants)}
+    ${participantModal(viewParticipant(participants))}
     `;
   }
 

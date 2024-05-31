@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const events = async () => {
-  const url = 'http://localhost/events';
+const participants = async (id) => {
+  const url = `http://localhost/participants/${id}`;
   try {
     const response = await axios.get(url);
     return response.data;
@@ -10,4 +10,4 @@ const events = async () => {
   }
 };
 
-export default events;
+export default participants;
