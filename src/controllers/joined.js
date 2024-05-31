@@ -1,4 +1,4 @@
-import dashbtn from '../views/dashboard/events/dashboard-button';
+import dashbtn from '../views/dashboard/dashboard-button';
 import viewNav from '../views/nav';
 import viewJoined from '../views/dashboard/joined/eventJoined-map';
 import joinedList from '../views/dashboard/joined/eventJoined-list';
