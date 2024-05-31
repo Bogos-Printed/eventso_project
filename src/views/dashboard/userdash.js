@@ -12,7 +12,7 @@ export default (event) => (`
         </div>
       </div>
       <div class="p-2 d-flex justify-content-between">
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-modal">Edit</a>
+        <a data-bs-target="#edit-modal"  data-bs-target="#edit-modal" class="btn btn-primary" data-bs-toggle="modal">Edit</a>
         <a data-bs-toggle="modal" data-bs-target="#participant-modal" class="btn btn-warning">Participants</a>
         <a href="#" class="btn btn-danger">Delete</a>
       </div>

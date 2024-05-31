@@ -11,8 +11,8 @@ import dashboardParticipant from '../views/dashboard/participants/participant-li
 import viewParticipant from '../views/dashboard/participants/participant-map';
 import participantModal from '../views/dashboard/modal/participant-modal';
 
-// import editInfos from '../views/dashboard/edit/edit-content';
-// import editModal from '../views/dashboard/modal/edit-modal';
+import editInfos from '../views/dashboard/edit/edit-list';
+import editModal from '../views/dashboard/modal/edit-modal';
 
 const Dashboard = class {
   constructor(params) {
@@ -34,6 +34,7 @@ const Dashboard = class {
   async render() {
     const events = await this.dataGet(dashboardEvents());
     const participants = await this.dataGet(dashboardParticipant(2));
+    const editEvent = await this.dataGet(editInfos(12));
     return `
     <div class="container">
         <div class="col-12">
@@ -45,8 +46,8 @@ const Dashboard = class {
         </div>
     </div>
     ${formModal()}
-    ${viewParticipant(participants)}
     ${participantModal(viewParticipant(participants))}
+    ${editModal(editEvent)}
     `;
   }
 
