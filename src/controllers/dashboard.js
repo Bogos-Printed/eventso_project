@@ -14,6 +14,8 @@ import participantModal from '../views/dashboard/modal/participant-modal';
 import editInfos from '../views/dashboard/edit/edit-list';
 import editModal from '../views/dashboard/modal/edit-modal';
 
+import requestList from '../views/dashboard/request-list';
+
 const Dashboard = class {
   constructor(params) {
     this.el = document.querySelector('#root');
@@ -24,8 +26,8 @@ const Dashboard = class {
 
   async dataGet(data) {
     try {
-      const events = await data;
-      return events;
+      const lists = await data;
+      return lists;
     } catch (error) {
       throw new Error(error);
     }
@@ -33,8 +35,8 @@ const Dashboard = class {
 
   async render() {
     const events = await this.dataGet(dashboardEvents());
-    const participants = await this.dataGet(dashboardParticipant(2));
-    const editEvent = await this.dataGet(editInfos(12));
+    const participants = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/participants`, 2));
+    const editEvent = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/event`, 12));
     return `
     <div class="container">
         <div class="col-12">
