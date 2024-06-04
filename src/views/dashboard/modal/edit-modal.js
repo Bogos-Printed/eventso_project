@@ -21,7 +21,7 @@ export default (data) => {
 
             <div class="mb-3">
               <label for="inputImg" class="form-label">Image URL</label>
-              <input type="url" class="form-control" id="inputImg" name="image" value="${data.image}>
+              <input type="url" class="form-control" id="inputImg" name="image" value="${data.image}">
             </div>
 
             <div class="mb-3">
