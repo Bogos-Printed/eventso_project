@@ -7,14 +7,15 @@ import dashboardEvents from '../views/dashboard/events/dashboard-list';
 import createEvent from '../views/dashboard/create-event';
 import formModal from '../views/dashboard/modal/form-modal';
 
-import dashboardParticipant from '../views/dashboard/participants/participant-list';
 import viewParticipant from '../views/dashboard/participants/participant-map';
 import participantModal from '../views/dashboard/modal/participant-modal';
 
-import editInfos from '../views/dashboard/edit/edit-list';
 import editModal from '../views/dashboard/modal/edit-modal';
+import updateEvent from '../views/dashboard/edit-event';
 
 import requestList from '../views/dashboard/request-list';
+
+import deleteEvent from '../views/dashboard/delete-event';
 
 const Dashboard = class {
   constructor(params) {
@@ -27,6 +28,7 @@ const Dashboard = class {
   async dataGet(data) {
     try {
       const lists = await data;
+      // console.log(lists);
       return lists;
     } catch (error) {
       throw new Error(error);
@@ -34,7 +36,7 @@ const Dashboard = class {
   }
 
   async render() {
-    const events = await this.dataGet(dashboardEvents());
+    this.events = await this.dataGet(dashboardEvents());
     const participants = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/participants`, 2));
     const editEvent = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/event`, 12));
     return `
@@ -44,7 +46,7 @@ const Dashboard = class {
         </div>
         ${dashbtn()}
         <div class="d-flex flex-wrap justify-content-center">
-          ${viewDashboard(events)}
+          ${viewDashboard(this.events)}
         </div>
     </div>
     ${formModal()}
@@ -70,9 +72,43 @@ const Dashboard = class {
     });
   }
 
+  formGreb() {
+    const form = document.querySelector('#editEvent');
+    const hurb = ['image', 'title', 'description', 'category', 'location', 'date'];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const fields = {};
+
+      hurb.forEach((elem) => {
+        fields[elem] = formData.get(elem);
+      });
+
+      updateEvent(fields);
+    });
+  }
+
+  removeEvent(events) {
+    events.forEach((event) => {
+      const deleteButtonId = document.querySelector(`#delete-${event.id}`);
+      if (deleteButtonId) {
+        deleteButtonId.addEventListener('click', (e) => {
+          e.preventDefault();
+          const card = document.querySelector(`#card-${event.id}`);
+          card.remove();
+          deleteEvent(`http://localhost:${process.env.BACKEND_PORT}/event`, event.id);
+          console.log('it is done');
+        });
+      }
+    });
+  }
+
   async run() {
     this.el.innerHTML = await this.render();
     this.formGrab();
+    this.formGreb();
+    this.removeEvent(this.events);
   }
 };
 
