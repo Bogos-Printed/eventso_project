@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const editEvent = async (formData) => {
+const editEvent = async (formData, id) => {
   const {
     image,
     title,
@@ -11,7 +11,7 @@ const editEvent = async (formData) => {
   } = formData;
   console.log(formData);
 
-  const url = 'http://127.0.0.1:80/event/12';
+  const url = `http://127.0.0.1:80/event/${id}`;
   try {
     const response = await axios.put(url, {
       image,
@@ -25,6 +25,7 @@ const editEvent = async (formData) => {
         'Content-Type': 'application/json'
       }
     });
+    console.log('sent');
     return response.data;
   } catch (error) {
     throw new Error(error);

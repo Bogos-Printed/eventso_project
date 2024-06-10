@@ -4,18 +4,9 @@ import dashbtn from '../views/dashboard/dashboard-button';
 import viewDashboard from '../views/dashboard/events/dashboard-map';
 import dashboardEvents from '../views/dashboard/events/dashboard-list';
 
-import createEvent from '../views/dashboard/create-event';
-import formModal from '../views/dashboard/modal/form-modal';
+// import requestList from '../views/dashboard/request-list';
 
-import viewParticipant from '../views/dashboard/participants/participant-map';
-import participantModal from '../views/dashboard/modal/participant-modal';
-
-import editModal from '../views/dashboard/modal/edit-modal';
-import updateEvent from '../views/dashboard/edit-event';
-
-import requestList from '../views/dashboard/request-list';
-
-import deleteEvent from '../views/dashboard/delete-event';
+// import deleteEvent from '../views/dashboard/delete-event';
 
 const Dashboard = class {
   constructor(params) {
@@ -36,10 +27,8 @@ const Dashboard = class {
   }
 
   async render() {
-    this.events = await this.dataGet(dashboardEvents());
-    const participants = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/participants`, 2));
-    const editEvent = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/event`, 12));
-    return `
+    this.events = await this.dataGet(dashboardEvents()); // data of all events
+    return `  
     <div class="container">
         <div class="col-12">
           ${viewNav()}
@@ -49,44 +38,7 @@ const Dashboard = class {
           ${viewDashboard(this.events)}
         </div>
     </div>
-    ${formModal()}
-    ${participantModal(viewParticipant(participants))}
-    ${editModal(editEvent)}
     `;
-  }
-
-  formGrab() {
-    const form = document.querySelector('#createEvent');
-    const bruh = ['image', 'title', 'description', 'category', 'location', 'date'];
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const fields = {};
-
-      bruh.forEach((elem) => {
-        fields[elem] = formData.get(elem);
-      });
-
-      createEvent(fields);
-    });
-  }
-
-  formGreb() {
-    const form = document.querySelector('#editEvent');
-    const hurb = ['image', 'title', 'description', 'category', 'location', 'date'];
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const fields = {};
-
-      hurb.forEach((elem) => {
-        fields[elem] = formData.get(elem);
-      });
-
-      updateEvent(fields);
-    });
   }
 
   removeEvent(events) {
@@ -97,8 +49,29 @@ const Dashboard = class {
           e.preventDefault();
           const card = document.querySelector(`#card-${event.id}`);
           card.remove();
-          deleteEvent(`http://localhost:${process.env.BACKEND_PORT}/event`, event.id);
-          console.log('it is done');
+          // deleteEvent(`http://localhost:${process.env.BACKEND_PORT}/event`, event.id);
+          // console.log('it is done');
+        });
+      }
+    });
+  }
+
+  relevantEvent(events) {
+    events.forEach((event) => {
+      const participantButtonId = document.querySelector(`#participant-${event.id}`);
+      const editButtonId = document.querySelector(`#edit-${event.id}`);
+      if (editButtonId) {
+        editButtonId.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const editUrl = `http://127.0.0.1:${process.env.FRONTEND_PORT}/edit-event?id=${event.id}`;
+          window.location.href = editUrl;
+        });
+      }
+      if (participantButtonId) {
+        participantButtonId.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const eventUrl = `http://127.0.0.1:${process.env.FRONTEND_PORT}/event-participants?id=${event.id}`;
+          window.location.href = eventUrl;
         });
       }
     });
@@ -106,9 +79,8 @@ const Dashboard = class {
 
   async run() {
     this.el.innerHTML = await this.render();
-    this.formGrab();
-    this.formGreb();
     this.removeEvent(this.events);
+    this.relevantEvent(this.events);
   }
 };
 
