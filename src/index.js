@@ -6,6 +6,9 @@ import Dashboard from './controllers/dashboard';
 import './index.scss';
 import Settings from './controllers/settings';
 import Joined from './controllers/joined';
+import EditForm from './controllers/editForm';
+import CreateForm from './controllers/createForm';
+import EventParticipants from './controllers/participants';
 
 const routes = [
   {
@@ -31,6 +34,18 @@ const routes = [
   {
     url: '/settings',
     controller: Settings
+  },
+  {
+    url: '/edit-event',
+    controller: EditForm
+  },
+  {
+    url: '/create-event',
+    controller: CreateForm
+  },
+  {
+    url: '/event-participants',
+    controller: EventParticipants
   }
 ];
 
