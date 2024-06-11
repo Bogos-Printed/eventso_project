@@ -1,7 +1,7 @@
 import Router from './Router';
 import Home from './controllers/homepage';
-import SignIn from './controllers/signIn';
-import SignUp from './controllers/singUp';
+import LogIn from './controllers/logIn';
+import Register from './controllers/register';
 import Dashboard from './controllers/dashboard';
 import './index.scss';
 import Settings from './controllers/settings';
@@ -16,12 +16,12 @@ const routes = [
     controller: Home
   },
   {
-    url: '/sign-in',
-    controller: SignIn
+    url: '/log-in',
+    controller: LogIn
   },
   {
-    url: '/sign-up',
-    controller: SignUp
+    url: '/register',
+    controller: Register
   },
   {
     url: '/dashboard',
