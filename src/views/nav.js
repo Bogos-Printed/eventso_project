@@ -8,7 +8,7 @@ export default () => (`
           <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/sign-in">Sign in</a>
+          <a class="nav-link" href="/log-in">Log in</a>
         </li>
       </ul>
 

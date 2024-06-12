@@ -1,21 +1,16 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
-const createUser = async (formData) => {
+const logUser = async (formData) => {
   const {
-    username,
-    firstname,
-    lastname,
     email,
     password
   } = formData;
   console.log(formData);
 
-  const url = `http://localhost:${process.env.BACKEND_PORT}/register`;
+  const url = `http://127.0.0.1:${process.env.BACKEND_PORT}/auth`;
   try {
     const response = await axios.post(url, {
-      username,
-      firstname,
-      lastname,
       email,
       password
     }, {
@@ -23,10 +18,13 @@ const createUser = async (formData) => {
         'Content-Type': 'application/json'
       }
     });
+    console.log(response.data.PHP_SESSID);
+    Cookies.set('EventsoToken', response.data.PHP_SESSID, { expires: 7 });
+    console.log(Cookies.get('EventsoToken'));
     return response.data;
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export default createUser;
+export default logUser;
