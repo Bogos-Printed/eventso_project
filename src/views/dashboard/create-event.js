@@ -11,7 +11,7 @@ const createEvent = async (formData) => {
   } = formData;
   console.log(formData);
 
-  const url = 'http://127.0.0.1:80/event/add';
+  const url = `http://127.0.0.1:${process.env.BACKEND_PORT}/event/add`;
   try {
     const response = await axios.post(url, {
       image,
