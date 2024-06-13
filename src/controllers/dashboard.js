@@ -1,10 +1,13 @@
+import Cookies from 'js-cookie';
+
 import viewNav from '../views/nav';
 import dashbtn from '../views/dashboard/dashboard-button';
 
 import viewDashboard from '../views/dashboard/events/dashboard-map';
-import dashboardEvents from '../views/dashboard/events/dashboard-list';
 
-// import requestList from '../views/dashboard/request-list';
+import checkUser from '../views/check-user';
+
+import requestList from '../views/dashboard/request-list';
 
 // import deleteEvent from '../views/dashboard/delete-event';
 
@@ -19,7 +22,6 @@ const Dashboard = class {
   async dataGet(data) {
     try {
       const lists = await data;
-      // console.log(lists);
       return lists;
     } catch (error) {
       throw new Error(error);
@@ -27,7 +29,8 @@ const Dashboard = class {
   }
 
   async render() {
-    this.events = await this.dataGet(dashboardEvents()); // data of all events
+    this.user_id = await this.isLoggedIn();
+    this.events = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/dashboard/${this.user_id}`)); // data of all events
     return `  
     <div class="container">
         <div class="col-12">
@@ -41,6 +44,7 @@ const Dashboard = class {
     `;
   }
 
+  // deletion of event
   removeEvent(events) {
     events.forEach((event) => {
       const deleteButtonId = document.querySelector(`#delete-${event.id}`);
@@ -56,6 +60,7 @@ const Dashboard = class {
     });
   }
 
+  // handles buttons AKA when clicking button sends to events with id in url
   relevantEvent(events) {
     events.forEach((event) => {
       const participantButtonId = document.querySelector(`#participant-${event.id}`);
@@ -63,18 +68,34 @@ const Dashboard = class {
       if (editButtonId) {
         editButtonId.addEventListener('click', async (e) => {
           e.preventDefault();
-          const editUrl = `http://127.0.0.1:${process.env.FRONTEND_PORT}/edit-event?id=${event.id}`;
+          const editUrl = `http://localhost:${process.env.FRONTEND_PORT}/edit-event?id=${event.id}`;
           window.location.href = editUrl;
         });
       }
       if (participantButtonId) {
         participantButtonId.addEventListener('click', async (e) => {
           e.preventDefault();
-          const eventUrl = `http://127.0.0.1:${process.env.FRONTEND_PORT}/event-participants?id=${event.id}`;
+          const eventUrl = `http://localhost:${process.env.FRONTEND_PORT}/event-participants?id=${event.id}`;
           window.location.href = eventUrl;
         });
       }
     });
+  }
+
+  // checks if the user is connected and get id of user
+  async isLoggedIn() {
+    const usertoken = Cookies.get('EventsoToken');
+    // -> no ''token'' = sent to log-in
+    // if (usertoken === null) {
+    //   // window.location.href = 'http://127.0.0.1:9090/log-in';
+    //   return; // exit function
+    // }
+    try {
+      const isUser = await checkUser(usertoken);
+      return isUser.id;
+    } catch (error) {
+      throw new Error('Error checking user:', error);
+    }
   }
 
   async run() {
