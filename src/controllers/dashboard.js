@@ -9,6 +9,9 @@ import checkUser from '../views/check-user';
 
 import requestList from '../views/dashboard/request-list';
 
+import modelsModal from '../views/dashboard/models-modal';
+import modelMap from '../views/dashboard/model-map';
+
 // import deleteEvent from '../views/dashboard/delete-event';
 
 const Dashboard = class {
@@ -31,6 +34,7 @@ const Dashboard = class {
   async render() {
     this.user_id = await this.isLoggedIn();
     this.events = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/dashboard/${this.user_id}`)); // data of all events
+    this.models = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/models/`));
     return `  
     <div class="container">
         <div class="col-12">
@@ -41,6 +45,7 @@ const Dashboard = class {
           ${viewDashboard(this.events)}
         </div>
     </div>
+    ${modelsModal(modelMap(this.models))}
     `;
   }
 
@@ -68,14 +73,14 @@ const Dashboard = class {
       if (editButtonId) {
         editButtonId.addEventListener('click', async (e) => {
           e.preventDefault();
-          const editUrl = `http://localhost:${process.env.FRONTEND_PORT}/edit-event?id=${event.id}`;
+          const editUrl = `http://127.0.0.1:${process.env.FRONTEND_PORT}/edit-event?id=${event.id}`;
           window.location.href = editUrl;
         });
       }
       if (participantButtonId) {
         participantButtonId.addEventListener('click', async (e) => {
           e.preventDefault();
-          const eventUrl = `http://localhost:${process.env.FRONTEND_PORT}/event-participants?id=${event.id}`;
+          const eventUrl = `http://127.0.0.1:${process.env.FRONTEND_PORT}/event-participants?id=${event.id}`;
           window.location.href = eventUrl;
         });
       }
