@@ -26,8 +26,9 @@ const EditForm = class {
 
   async render() {
     this.events = await this.dataGet(dashboardEvents()); // data of all events
-    const urlId = new URLSearchParams(window.location.search);
-    const editId = urlId.get('id');
+    // const urlId = new URLSearchParams(window.location.search);
+    // const editId = urlId.get('id');
+    const editId = this.getEventId();
     const editEvent = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/event/${editId}`));
     return `  
     <div class="container">
@@ -44,6 +45,7 @@ const EditForm = class {
   formGrab() { // grabs form data
     const form = document.querySelector('#editEvent');
     const hurb = ['image', 'title', 'description', 'category', 'location', 'date'];
+    const eventId = this.getEventId();
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -53,10 +55,21 @@ const EditForm = class {
         hurb.forEach((elem) => {
           fields[elem] = formData.get(elem);
         });
-        updateEvent(fields, 12); // field + event.id
-        window.location.href = '/dashboard'; // sends to dashboard
+        updateEvent(fields, eventId); // field + event.id
+
+        // ensure that the data is sent before redirection
+        window.setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 500);
       });
     }
+  }
+
+  getEventId() {
+    const urlId = new URLSearchParams(window.location.search);
+    const editId = urlId.get('id');
+
+    return editId;
   }
 
   async run() {

@@ -56,7 +56,9 @@ const CreateForm = class {
 
       fields.userId = idUser;
       createEvent(fields);
-      window.location.href = '/dashboard';
+      window.setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 500);
     });
   }
 
