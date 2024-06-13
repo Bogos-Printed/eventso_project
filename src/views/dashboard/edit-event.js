@@ -9,7 +9,6 @@ const editEvent = async (formData, id) => {
     location,
     date
   } = formData;
-  console.log(formData);
 
   const url = `http://127.0.0.1:${process.env.BACKEND_PORT}/event/${id}`;
   try {
@@ -25,7 +24,6 @@ const editEvent = async (formData, id) => {
         'Content-Type': 'application/json'
       }
     });
-    console.log('sent');
     return response.data;
   } catch (error) {
     throw new Error(error);

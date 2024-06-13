@@ -8,7 +8,6 @@ const createUser = async (formData) => {
     email,
     password
   } = formData;
-  console.log(formData);
 
   const url = `http://localhost:${process.env.BACKEND_PORT}/register`;
   try {

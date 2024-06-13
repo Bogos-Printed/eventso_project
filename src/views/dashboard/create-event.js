@@ -9,7 +9,6 @@ const createEvent = async (formData) => {
     location,
     date
   } = formData;
-  console.log(formData);
 
   const url = `http://127.0.0.1:${process.env.BACKEND_PORT}/event/add`;
   try {
