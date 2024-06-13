@@ -1,9 +1,13 @@
+import Cookies from 'js-cookie';
+
 import viewNav from '../views/nav';
 
 import dashboardEvents from '../views/dashboard/events/dashboard-list';
 
 import createEvent from '../views/dashboard/create-event';
 import createFrom from '../views/create-form';
+
+import checkUser from '../views/check-user';
 
 const CreateForm = class {
   constructor(params) {
@@ -36,22 +40,34 @@ const CreateForm = class {
     `;
   }
 
-  formGrab() {
+  async formGrab() {
     const form = document.querySelector('#createEvent');
-    const bruh = ['image', 'title', 'description', 'category', 'location', 'date'];
+    const idUser = await this.getUserId();
+    const input = ['userId', 'image', 'title', 'description', 'category', 'location', 'date'];
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const formData = new FormData(form);
       const fields = {};
 
-      bruh.forEach((elem) => {
+      input.forEach((elem) => {
         fields[elem] = formData.get(elem);
       });
 
+      fields.userId = idUser;
       createEvent(fields);
       window.location.href = '/dashboard';
     });
+  }
+
+  async getUserId() {
+    const usertoken = Cookies.get('EventsoToken');
+    try {
+      const isUser = await checkUser(usertoken);
+      return isUser.id;
+    } catch (error) {
+      throw new Error('Error checking user:', error);
+    }
   }
 
   async run() {

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const createEvent = async (formData) => {
   const {
+    userId,
     image,
     title,
     description,
@@ -10,9 +11,10 @@ const createEvent = async (formData) => {
     date
   } = formData;
 
-  const url = `http://127.0.0.1:${process.env.BACKEND_PORT}/event/add`;
+  const url = `http://localhost:${process.env.BACKEND_PORT}/event/add/`;
   try {
     const response = await axios.post(url, {
+      userId,
       image,
       title,
       description,
