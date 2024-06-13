@@ -36,8 +36,16 @@ const Joined = class {
     `;
   }
 
+  joinedNav() {
+    const createdTab = document.querySelector('#created-tab');
+    const joinedTab = document.querySelector('#joined-tab');
+    createdTab.classList.remove('active');
+    joinedTab.classList.add('active');
+  }
+
   async run() {
     this.el.innerHTML = await this.render();
+    this.joinedNav();
   }
 };
 
