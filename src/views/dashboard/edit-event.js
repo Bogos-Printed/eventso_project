@@ -10,7 +10,7 @@ const editEvent = async (formData, id) => {
     date
   } = formData;
 
-  const url = `http://127.0.0.1:${process.env.BACKEND_PORT}/event/${id}`;
+  const url = `http://localhost:${process.env.BACKEND_PORT}/event/${id}`;
   try {
     const response = await axios.put(url, {
       image,
