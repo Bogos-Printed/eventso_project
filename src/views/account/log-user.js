@@ -7,7 +7,7 @@ const logUser = async (formData) => {
     password
   } = formData;
 
-  const url = `http://127.0.0.1:${process.env.BACKEND_PORT}/auth`;
+  const url = `http://localhost:${process.env.BACKEND_PORT}/auth/`;
   try {
     const response = await axios.post(url, {
       email,
@@ -17,7 +17,7 @@ const logUser = async (formData) => {
         'Content-Type': 'application/json'
       }
     });
-    Cookies.set('EventsoToken', response.data.PHP_SESSID, { expires: 7 });
+    Cookies.set('EventsoToken', response.data.PHP_SESSID, { expires: 20 });
     return response.data;
   } catch (error) {
     throw new Error(error);

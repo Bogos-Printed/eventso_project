@@ -36,7 +36,9 @@ const LogIn = class {
 
       // console.log(fields);
       logUser(fields); // post function
-      window.location.href = '/';
+      window.setTimeout(() => {
+        window.location.href = '/';
+      }, 500);
     });
   }
 
