@@ -11,8 +11,8 @@ import isLoggedIn from '../views/is-loggedIn';
 
 import requestList from '../views/dashboard/request-list';
 
-import modelsModal from '../views/dashboard/models-modal';
-import modelMap from '../views/dashboard/model-map';
+import modelsModal from '../views/dashboard/models/models-modal';
+import modelMap from '../views/dashboard/models/model-map';
 
 import deleteEvent from '../views/dashboard/delete-event';
 
