@@ -1,8 +1,11 @@
+import Cookies from 'js-cookie';
 import viewNav from '../views/nav';
 import viewEvents from '../views/events-map';
-import eventList from '../views/event-list';
-import isLoggedIn from '../views/account/is-loggedIn';
+import requestList from '../views/dashboard/request-list';
 import logOut from '../views/account/disconnect';
+import createGroup from '../views/create-group';
+import checkJoined from '../views/check-joined';
+import checkUser from '../views/account/check-user';
 
 const Home = class {
   constructor(params) {
@@ -12,9 +15,9 @@ const Home = class {
     this.run();
   }
 
-  async dataFetch() {
+  async dataGet(data) {
     try {
-      const events = await eventList();
+      const events = await data;
       return events;
     } catch (error) {
       throw new Error(error);
@@ -22,7 +25,7 @@ const Home = class {
   }
 
   async render() {
-    const events = await this.dataFetch();
+    this.events = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/events`)); // data of all events
     return `
       <header class="container">
           ${viewNav()}
@@ -50,16 +53,37 @@ const Home = class {
         </div>
 
         <div class="row d-flex justify-content-center">
-          ${viewEvents(events)}
+          ${viewEvents(this.events)}
         </div>
       </main>
     `;
   }
 
+  ParticipateEvent(events) {
+    events.forEach((event) => {
+      const joinButtonId = document.querySelector(`#join-${event.id}`);
+      // const eventId = event.id;
+      if (joinButtonId) {
+        joinButtonId.addEventListener('click', async (e) => {
+          e.preventDefault();
+          // createGroup(eventId);
+        });
+      }
+    });
+  }
+
+  async isJoined() {
+    const usertoken = Cookies.get('EventsoToken');
+    const isUser = await checkUser(usertoken);
+    const userId = isUser.id;
+    return userId;
+  }
+
   async run() {
     this.el.innerHTML = await this.render();
-    isLoggedIn();
+    this.ParticipateEvent(this.events);
     logOut();
+    checkJoined(this.isJoined());
   }
 };
 
