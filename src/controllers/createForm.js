@@ -8,6 +8,8 @@ import createEvent from '../views/dashboard/create-event';
 import createFrom from '../views/create-form';
 
 import checkUser from '../views/check-user';
+import logOut from '../views/disconnect';
+import isLoggedIn from '../views/is-loggedIn';
 
 const CreateForm = class {
   constructor(params) {
@@ -79,7 +81,9 @@ const CreateForm = class {
 
   async run() {
     this.el.innerHTML = await this.render();
+    isLoggedIn();
     this.formGrab();
+    logOut();
   }
 };
 

@@ -6,13 +6,15 @@ import dashbtn from '../views/dashboard/dashboard-button';
 import viewDashboard from '../views/dashboard/events/dashboard-map';
 
 import checkUser from '../views/check-user';
+import logOut from '../views/disconnect';
+import isLoggedIn from '../views/is-loggedIn';
 
 import requestList from '../views/dashboard/request-list';
 
 import modelsModal from '../views/dashboard/models-modal';
 import modelMap from '../views/dashboard/model-map';
 
-// import deleteEvent from '../views/dashboard/delete-event';
+import deleteEvent from '../views/dashboard/delete-event';
 
 const Dashboard = class {
   constructor(params) {
@@ -58,7 +60,7 @@ const Dashboard = class {
           e.preventDefault();
           const card = document.querySelector(`#card-${event.id}`);
           card.remove();
-          // deleteEvent(`http://localhost:${process.env.BACKEND_PORT}/event`, event.id);
+          deleteEvent(`http://localhost:${process.env.BACKEND_PORT}/event`, event.id);
           // console.log('it is done');
         });
       }
@@ -90,11 +92,9 @@ const Dashboard = class {
   // checks if the user is connected and get id of user
   async isLoggedIn() {
     const usertoken = Cookies.get('EventsoToken');
-    // -> no ''token'' = sent to log-in
-    // if (usertoken === null) {
-    //   // window.location.href = 'http://127.0.0.1:9090/log-in';
-    //   return; // exit function
-    // }
+    if (usertoken == null) {
+      isLoggedIn();
+    }
     try {
       const isUser = await checkUser(usertoken);
       return isUser.id;
@@ -105,8 +105,10 @@ const Dashboard = class {
 
   async run() {
     this.el.innerHTML = await this.render();
+    isLoggedIn();
     this.removeEvent(this.events);
     this.relevantEvent(this.events);
+    logOut();
   }
 };
 

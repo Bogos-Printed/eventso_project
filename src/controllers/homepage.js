@@ -2,6 +2,8 @@ import viewNav from '../views/nav';
 // import viewHome from '../views/home';
 import viewEvents from '../views/events-map';
 import eventList from '../views/event-list';
+import isLoggedIn from '../views/is-loggedIn';
+import logOut from '../views/disconnect';
 
 const Home = class {
   constructor(params) {
@@ -57,6 +59,8 @@ const Home = class {
 
   async run() {
     this.el.innerHTML = await this.render();
+    isLoggedIn();
+    logOut();
   }
 };
 

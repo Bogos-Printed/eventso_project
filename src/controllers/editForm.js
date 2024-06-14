@@ -7,6 +7,8 @@ import updateEvent from '../views/dashboard/edit-event';
 import dashboardEvents from '../views/dashboard/events/dashboard-list';
 
 import requestList from '../views/dashboard/request-list';
+import logOut from '../views/disconnect';
+import isLoggedIn from '../views/is-loggedIn';
 
 const EditForm = class {
   constructor(params) {
@@ -74,7 +76,9 @@ const EditForm = class {
 
   async run() {
     this.el.innerHTML = await this.render();
+    isLoggedIn();
     this.formGrab();
+    logOut();
   }
 };
 

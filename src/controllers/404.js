@@ -1,4 +1,6 @@
-import Nav from '../views/nav';
+import logOut from '../views/disconnect';
+import isLoggedIn from '../views/is-loggedIn';
+import viewNav from '../views/nav';
 
 const Error404 = class {
   constructor() {
@@ -9,15 +11,21 @@ const Error404 = class {
 
   render() {
     return `
-      ${Nav()}
+    <div class="container">
+      <div class="col-12">
+        ${viewNav()}
+      </div>
       <div>
         <h1>404</h1>
       </div>
+    </div>
     `;
   }
 
   run() {
     this.el.innerHTML = this.render();
+    isLoggedIn();
+    logOut();
   }
 };
 

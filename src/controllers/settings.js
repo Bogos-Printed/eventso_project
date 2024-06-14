@@ -1,4 +1,6 @@
 import viewSettings from '../views/account/setting-user';
+import logOut from '../views/disconnect';
+import isLoggedIn from '../views/is-loggedIn';
 import viewNav from '../views/nav';
 
 const Settings = class {
@@ -25,6 +27,8 @@ const Settings = class {
 
   run() {
     this.el.innerHTML = this.render();
+    isLoggedIn();
+    logOut();
   }
 };
 

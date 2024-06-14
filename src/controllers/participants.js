@@ -4,6 +4,8 @@ import viewParticipant from '../views/dashboard/participants/participant-map';
 import AllParticipants from '../views/event-participants';
 
 import requestList from '../views/dashboard/request-list';
+import logOut from '../views/disconnect';
+import isLoggedIn from '../views/is-loggedIn';
 
 const EventParticipants = class {
   constructor(params) {
@@ -59,6 +61,8 @@ const EventParticipants = class {
 
   async run() {
     this.el.innerHTML = await this.render();
+    isLoggedIn();
+    logOut();
   }
 };
 
