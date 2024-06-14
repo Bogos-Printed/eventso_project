@@ -55,6 +55,11 @@ const CreateForm = class {
       });
 
       fields.userId = idUser;
+
+      if (fields.image === '') {
+        fields.image = 'https://t4.ftcdn.net/jpg/02/51/00/15/360_F_251001540_P8oe2YQ5v5dhZnrN5SFwXgLS0NMZXyNn.jpg';
+      }
+
       createEvent(fields);
       window.setTimeout(() => {
         window.location.href = '/dashboard';
