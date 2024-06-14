@@ -3,7 +3,7 @@ import viewNav from '../views/nav';
 import viewEvents from '../views/events-map';
 import requestList from '../views/dashboard/request-list';
 import logOut from '../views/account/disconnect';
-import createGroup from '../views/create-group';
+// import createGroup from '../views/create-group';
 import checkJoined from '../views/check-joined';
 import checkUser from '../views/account/check-user';
 
