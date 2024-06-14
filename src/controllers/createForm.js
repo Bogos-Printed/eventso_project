@@ -2,8 +2,6 @@ import Cookies from 'js-cookie';
 
 import viewNav from '../views/nav';
 
-import dashboardEvents from '../views/dashboard/events/dashboard-list';
-
 import createEvent from '../views/dashboard/create-event';
 import createFrom from '../views/create-form';
 
@@ -29,7 +27,6 @@ const CreateForm = class {
   }
 
   async render() {
-    this.events = await this.dataGet(dashboardEvents()); // data of all events
     return `  
     <div class="container">
         <div class="col-12">

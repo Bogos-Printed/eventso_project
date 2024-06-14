@@ -1,10 +1,7 @@
 import viewNav from '../views/nav';
-// import dashbtn from '../views/dashboard/dashboard-button';
 
 import editForm from '../views/edit-form';
 import updateEvent from '../views/dashboard/edit-event';
-
-import dashboardEvents from '../views/dashboard/events/dashboard-list';
 
 import requestList from '../views/dashboard/request-list';
 import logOut from '../views/account/disconnect';
@@ -27,9 +24,6 @@ const EditForm = class {
   }
 
   async render() {
-    this.events = await this.dataGet(dashboardEvents()); // data of all events
-    // const urlId = new URLSearchParams(window.location.search);
-    // const editId = urlId.get('id');
     const editId = this.getEventId();
     const editEvent = await this.dataGet(requestList(`http://localhost:${process.env.BACKEND_PORT}/event/${editId}`));
     return `  
