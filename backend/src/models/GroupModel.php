@@ -61,4 +61,16 @@ class GroupModel extends SqlConnect {
   
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
+
+    public function getUserGroupEvent(int $id) {
+      $req = $this->db->prepare(
+        "SELECT eg.event_id 
+        FROM event_group AS eg
+        LEFT JOIN user_group AS ug
+        ON eg.id = ug.group_id
+        WHERE ug.user_id = :user_id");
+      $req->execute(["user_id" => $id]);
+
+      return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
+    }
 }
