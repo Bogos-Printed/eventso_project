@@ -1,4 +1,5 @@
 import axios from 'axios';
+import createGroup from '../create-group';
 
 const createEvent = async (formData) => {
   const {
@@ -26,6 +27,7 @@ const createEvent = async (formData) => {
         'Content-Type': 'application/json'
       }
     });
+    createGroup(response.data.id);
     return response.data;
   } catch (error) {
     throw new Error(error);
