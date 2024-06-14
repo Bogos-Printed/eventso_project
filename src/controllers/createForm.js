@@ -7,8 +7,8 @@ import dashboardEvents from '../views/dashboard/events/dashboard-list';
 import createEvent from '../views/dashboard/create-event';
 import createFrom from '../views/create-form';
 
-import checkUser from '../views/check-user';
-import logOut from '../views/disconnect';
+import checkUser from '../views/account/check-user';
+import logOut from '../views/account/disconnect';
 import isLoggedIn from '../views/is-loggedIn';
 
 const CreateForm = class {

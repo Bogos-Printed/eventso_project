@@ -5,8 +5,8 @@ import dashbtn from '../views/dashboard/dashboard-button';
 
 import viewDashboard from '../views/dashboard/events/dashboard-map';
 
-import checkUser from '../views/check-user';
-import logOut from '../views/disconnect';
+import checkUser from '../views/account/check-user';
+import logOut from '../views/account/disconnect';
 import isLoggedIn from '../views/is-loggedIn';
 
 import requestList from '../views/dashboard/request-list';

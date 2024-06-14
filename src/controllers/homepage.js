@@ -1,9 +1,8 @@
 import viewNav from '../views/nav';
-// import viewHome from '../views/home';
 import viewEvents from '../views/events-map';
 import eventList from '../views/event-list';
 import isLoggedIn from '../views/is-loggedIn';
-import logOut from '../views/disconnect';
+import logOut from '../views/account/disconnect';
 
 const Home = class {
   constructor(params) {

@@ -2,7 +2,7 @@ import dashbtn from '../views/dashboard/dashboard-button';
 import viewNav from '../views/nav';
 import viewJoined from '../views/dashboard/joined/eventJoined-map';
 import joinedList from '../views/dashboard/joined/eventJoined-list';
-import logOut from '../views/disconnect';
+import logOut from '../views/account/disconnect';
 import isLoggedIn from '../views/is-loggedIn';
 
 const Joined = class {

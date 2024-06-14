@@ -4,7 +4,7 @@ import viewParticipant from '../views/dashboard/participants/participant-map';
 import AllParticipants from '../views/event-participants';
 
 import requestList from '../views/dashboard/request-list';
-import logOut from '../views/disconnect';
+import logOut from '../views/account/disconnect';
 import isLoggedIn from '../views/is-loggedIn';
 
 const EventParticipants = class {

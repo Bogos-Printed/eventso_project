@@ -7,7 +7,7 @@ import updateEvent from '../views/dashboard/edit-event';
 import dashboardEvents from '../views/dashboard/events/dashboard-list';
 
 import requestList from '../views/dashboard/request-list';
-import logOut from '../views/disconnect';
+import logOut from '../views/account/disconnect';
 import isLoggedIn from '../views/is-loggedIn';
 
 const EditForm = class {
