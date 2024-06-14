@@ -7,7 +7,7 @@ import viewDashboard from '../views/dashboard/events/dashboard-map';
 
 import checkUser from '../views/account/check-user';
 import logOut from '../views/account/disconnect';
-import isLoggedIn from '../views/is-loggedIn';
+import isLoggedIn from '../views/account/is-loggedIn';
 
 import requestList from '../views/dashboard/request-list';
 

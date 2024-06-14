@@ -3,7 +3,7 @@ import viewNav from '../views/nav';
 import viewJoined from '../views/dashboard/joined/eventJoined-map';
 import joinedList from '../views/dashboard/joined/eventJoined-list';
 import logOut from '../views/account/disconnect';
-import isLoggedIn from '../views/is-loggedIn';
+import isLoggedIn from '../views/account/is-loggedIn';
 
 const Joined = class {
   constructor(params) {

@@ -1,6 +1,6 @@
 import viewSettings from '../views/account/setting-user';
 import logOut from '../views/account/disconnect';
-import isLoggedIn from '../views/is-loggedIn';
+import isLoggedIn from '../views/account/is-loggedIn';
 import viewNav from '../views/nav';
 
 const Settings = class {

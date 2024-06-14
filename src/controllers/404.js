@@ -1,5 +1,5 @@
 import logOut from '../views/account/disconnect';
-import isLoggedIn from '../views/is-loggedIn';
+import isLoggedIn from '../views/account/is-loggedIn';
 import viewNav from '../views/nav';
 
 const Error404 = class {

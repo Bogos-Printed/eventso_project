@@ -1,7 +1,7 @@
 import viewNav from '../views/nav';
 import viewEvents from '../views/events-map';
 import eventList from '../views/event-list';
-import isLoggedIn from '../views/is-loggedIn';
+import isLoggedIn from '../views/account/is-loggedIn';
 import logOut from '../views/account/disconnect';
 
 const Home = class {

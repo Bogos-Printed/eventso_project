@@ -5,7 +5,7 @@ import AllParticipants from '../views/event-participants';
 
 import requestList from '../views/dashboard/request-list';
 import logOut from '../views/account/disconnect';
-import isLoggedIn from '../views/is-loggedIn';
+import isLoggedIn from '../views/account/is-loggedIn';
 
 const EventParticipants = class {
   constructor(params) {
