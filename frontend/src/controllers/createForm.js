@@ -39,6 +39,7 @@ const CreateForm = class {
     `;
   }
 
+  // retreives data from form and send it to createEvents
   async formGrab() {
     const form = document.querySelector('#createEvent');
     const idUser = await this.getUserId();
@@ -55,10 +56,12 @@ const CreateForm = class {
 
       fields.userId = idUser;
 
+      // adds a default image
       if (fields.image === '') {
         fields.image = 'https://t4.ftcdn.net/jpg/02/51/00/15/360_F_251001540_P8oe2YQ5v5dhZnrN5SFwXgLS0NMZXyNn.jpg';
       }
 
+      // creates event with form data
       createEvent(fields);
       window.setTimeout(() => {
         window.location.href = '/dashboard';
@@ -66,6 +69,7 @@ const CreateForm = class {
     });
   }
 
+  // retreive user id
   async getUserId() {
     const usertoken = Cookies.get('EventsoToken');
     try {
